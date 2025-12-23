@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>✨ Christmas Magic Camera ✨</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --christmas-red: #ff0000;
+            --christmas-green: #00ff8c;
+            --christmas-gold: #ffcc00;
+            --christmas-blue: #00eaff;
+            --dark-bg: #0a0f2b;
+            --snow-white: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f3a 100%);
+            color: var(--snow-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        ::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff0000;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #00ffea;
+}
+
+        /* ✨ Animated Background */
+        .christmas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 234, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 204, 0, 0.1) 0%, transparent 40%);
+            animation: twinkle 8s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* ❄️ Snow Animation */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+            box-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(0, 234, 255, 0.4);
+            filter: blur(0.5px);
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10px) translateX(0) rotate(0deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ✨ Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* 🎄 Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, 
+                rgba(255, 0, 0, 0.15) 0%, 
+                rgba(0, 234, 255, 0.15) 100%);
+            border-radius: 25px;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, var(--christmas-red), var(--christmas-blue)) 1;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 10px 30px rgba(255, 0, 0, 0.2),
+                0 0 50px rgba(0, 234, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .main-title {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, 
+                var(--christmas-red), 
+                var(--christmas-gold), 
+                var(--christmas-green), 
+                var(--christmas-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5)); }
+            100% { filter: drop-shadow(0 0 20px rgba(0, 234, 255, 0.5)); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 📸 Camera Section */
+        .camera-section {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .camera-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--christmas-blue);
+        }
+
+        .section-header i {
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--christmas-red), var(--christmas-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        /* 🎥 Video Preview */
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+            aspect-ratio: 4/3;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, var(--christmas-red), var(--christmas-blue), var(--christmas-gold)) border-box;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .camera-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .camera-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            min-width: 150px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .camera-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .camera-btn:hover::before {
+            left: 100%;
+        }
+
+        .camera-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .camera-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, var(--christmas-red), #ff6b6b);
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .capture-btn {
+            background: linear-gradient(45deg, var(--christmas-green), #00cc88);
+            box-shadow: 0 5px 20px rgba(0, 255, 140, 0.4);
+        }
+
+        .stop-btn {
+            background: linear-gradient(45deg, var(--christmas-blue), #2cfbff);
+            box-shadow: 0 5px 20px rgba(0, 234, 255, 0.4);
+        }
+
+        .flip-btn {
+            background: linear-gradient(45deg, var(--christmas-gold), #ffd93d);
+            box-shadow: 0 5px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        /* 🖼️ Photo Gallery */
+        .gallery-section {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, rgba(255,0,0,0.3), rgba(0,234,255,0.3)) border-box;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 
+                0 15px 30px rgba(255, 0, 0, 0.3),
+                0 0 40px rgba(0, 234, 255, 0.2);
+            border-color: var(--christmas-blue);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+
+        /* 🎁 Camera Overlay Effects */
+        .camera-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        .frame-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid;
+            animation: cornerGlow 2s infinite alternate;
+        }
+
+        .frame-corner.tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+            border-color: var(--christmas-red);
+        }
+
+        .frame-corner.tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+            border-color: var(--christmas-green);
+        }
+
+        .frame-corner.bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+            border-color: var(--christmas-blue);
+        }
+
+        .frame-corner.br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+            border-color: var(--christmas-gold);
+        }
+
+        @keyframes cornerGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px currentColor); }
+            50% { filter: drop-shadow(0 0 20px currentColor); }
+        }
+
+        .overlay-text {
+            text-align: center;
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-top: 20px;
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* 🔔 Notification */
+        .notification {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: linear-gradient(135deg, var(--christmas-red), var(--christmas-green));
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            display: none;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            min-width: 300px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .notification.show {
+            animation: notificationSlide 0.5s ease forwards, 
+                       notificationPulse 2s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes notificationSlide {
+            to { transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes notificationPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+            50% { box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5); }
+        }
+
+        /* 📸 Preview Modal */
+        .preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1002;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalFadeIn 0.4s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .preview-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 20px 50px rgba(255, 0, 0, 0.3),
+                0 0 100px rgba(0, 234, 255, 0.2);
+        }
+
+        #capturedImage {
+            width: 100%;
+            max-height: 400px;
+            border-radius: 15px;
+            margin: 20px 0;
+            object-fit: contain;
+            background: #000;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .preview-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .preview-btn {
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .preview-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .save-btn { background: linear-gradient(45deg, #00b09b, #2cfbff); }
+        .retake-btn { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
+        .share-btn { background: linear-gradient(45deg, #2193b0, #6dd5ed); }
+
+        /* 🎯 Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .camera-controls {
+                gap: 10px;
+            }
+
+            .camera-btn {
+                min-width: 120px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .camera-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .camera-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .preview-buttons {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* 📱 Camera Demo Fallback */
+        .demo-camera {
+            background: linear-gradient(45deg, #1a1f3a, #2d3250);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .demo-camera::before {
+            content: '📸';
+            font-size: 4rem;
+            animation: demoPulse 2s infinite;
+        }
+
+        @keyframes demoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 🎄 Christmas Background -->
+    <div class="christmas-bg"></div>
+    <div class="snow-container" id="snowContainer"></div>
+
+    <!-- 🎅 Main Content -->
+    <div class="container">
+        <!-- Header -->
+       <a href="index.html"> <div class="header">
+            <h1 class="main-title">✨ Christmas Camera Magic ✨</h1>
+            <p class="subtitle">
+                Capture unforgettable Christmas memories with our magical camera! 🎅🎄
+            </p>
+        </div>
+        </a>
+        <!-- 📸 Camera Section -->
+        <div class="camera-section">
+            <div class="section-header">
+                <i class="fas fa-camera"></i>
+                <h2 class="section-title">Christmas Selfie Camera</h2>
+            </div>
+            
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px; text-align: center;">
+                Take photos with Christmas effects and share the holiday spirit! ✨
+            </p>
+            
+            <!-- Video Container -->
+            <div class="video-container">
+                <video id="videoElement" autoplay playsinline></video>
+                <div class="camera-overlay">
+                    <div class="frame-corner tl"></div>
+                    <div class="frame-corner tr"></div>
+                    <div class="overlay-text">🎄 Merry Christmas! 🎅</div>
+                    <div class="frame-corner bl"></div>
+                    <div class="frame-corner br"></div>
+                </div>
+            </div>
+            
+            <!-- Camera Controls -->
+            <div class="camera-controls">
+                <button class="camera-btn start-btn" id="startCameraBtn">
+                    <i class="fas fa-play"></i> Start Camera
+                </button>
+                <button class="camera-btn capture-btn" id="captureBtn" disabled>
+                    <i class="fas fa-camera"></i> Take Photo
+                </button>
+                <button class="camera-btn stop-btn" id="stopCameraBtn" disabled>
+                    <i class="fas fa-stop"></i> Stop Camera
+                </button>
+                <button class="camera-btn flip-btn" id="flipCameraBtn" disabled>
+                    <i class="fas fa-sync-alt"></i> Flip Camera
+                </button>
+            </div>
+            
+            <canvas id="photoCanvas" style="display: none"></canvas>
+        </div>
+
+        <!-- 🖼️ Photo Gallery -->
+        <div class="gallery-section">
+            <div class="section-header">
+                <i class="fas fa-images"></i>
+                <h2 class="section-title">Your Christmas Memories</h2>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Photos will be loaded here -->
+            </div>
+            
+            <p style="text-align: center; margin-top: 25px; color: var(--christmas-blue);">
+                <i class="fas fa-info-circle"></i> Tap on any photo to view or delete it
+            </p>
+        </div>
+    </div>
+
+    <!-- 📸 Preview Modal -->
+    <div class="preview-modal" id="previewModal">
+        <div class="preview-content">
+            <h3 style="text-align: center; color: var(--christmas-blue); margin-bottom: 20px;">
+                <i class="fas fa-star"></i> Christmas Photo Preview <i class="fas fa-star"></i>
+            </h3>
+            <img id="capturedImage" alt="Captured Photo" />
+            <div class="preview-buttons">
+                <button class="preview-btn save-btn" id="savePhotoBtn">
+                    <i class="fas fa-save"></i> Save Photo
+                </button>
+                <button class="preview-btn retake-btn" id="retakeBtn">
+                    <i class="fas fa-redo"></i> Retake
+                </button>
+                <button class="preview-btn share-btn" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔔 Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // DOM Elements
+        const videoElement = document.getElementById("videoElement");
+        const startCameraBtn = document.getElementById("startCameraBtn");
+        const stopCameraBtn = document.getElementById("stopCameraBtn");
+        const captureBtn = document.getElementById("captureBtn");
+        const flipCameraBtn = document.getElementById("flipCameraBtn");
+        const photoCanvas = document.getElementById("photoCanvas");
+        const previewModal = document.getElementById("previewModal");
+        const capturedImage = document.getElementById("capturedImage");
+        const savePhotoBtn = document.getElementById("savePhotoBtn");
+        const retakeBtn = document.getElementById("retakeBtn");
+        const shareBtn = document.getElementById("shareBtn");
+        const galleryGrid = document.getElementById("galleryGrid");
+        const notification = document.getElementById("notification");
+        const snowContainer = document.getElementById("snowContainer");
+
+        // Variables
+        let stream = null;
+        let currentPhoto = null;
+        let usingFrontCamera = true;
+        let isCameraActive = false;
+        let savedPhotos = JSON.parse(localStorage.getItem("christmasPhotos")) || [];
+
+        // Initialize
+        function init() {
+            createSnowflakes();
+            loadSavedPhotos();
+            setupEventListeners();
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            startCameraBtn.addEventListener("click", startCamera);
+            stopCameraBtn.addEventListener("click", stopCamera);
+            captureBtn.addEventListener("click", capturePhoto);
+            flipCameraBtn.addEventListener("click", flipCamera);
+            savePhotoBtn.addEventListener("click", savePhoto);
+            retakeBtn.addEventListener("click", retakePhoto);
+            shareBtn.addEventListener("click", sharePhoto);
+            
+            // Close preview when clicking outside
+            previewModal.addEventListener("click", function(e) {
+                if (e.target === previewModal) {
+                    previewModal.style.display = "none";
+                }
+            });
+        }
+
+        // Start Camera
+        async function startCamera() {
+            try {
+                const constraints = {
+                    video: {
+                        facingMode: usingFrontCamera ? "user" : "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                };
+
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                videoElement.srcObject = stream;
+                isCameraActive = true;
+                
+                // Update button states
+                startCameraBtn.disabled = true;
+                stopCameraBtn.disabled = false;
+                captureBtn.disabled = false;
+                flipCameraBtn.disabled = false;
+                
+                showNotification("📸 Camera activated! Ready for Christmas photos!");
+                
+            } catch (error) {
+                console.error("Camera error:", error);
+                showNotification("🎅 Camera not available. Using demo mode!");
+                showDemoCamera();
+            }
+        }
+
+        // Show Demo Camera
+        function showDemoCamera() {
+            videoElement.parentElement.classList.add("demo-camera");
+            videoElement.style.display = "none";
+            isCameraActive = false;
+            startCameraBtn.disabled = true;
+            captureBtn.disabled = false; // Allow capturing demo photos
+            showNotification("✨ Demo mode activated! You can still save Christmas-themed photos!");
+        }
+
+        // Stop Camera
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            
+            videoElement.srcObject = null;
+            videoElement.parentElement.classList.remove("demo-camera");
+            videoElement.style.display = "block";
+            isCameraActive = false;
+            
+            // Update button states
+            startCameraBtn.disabled = false;
+            stopCameraBtn.disabled = true;
+            captureBtn.disabled = true;
+            flipCameraBtn.disabled = true;
+            
+            showNotification("📸 Camera stopped");
+        }
+
+        // Flip Camera
+        function flipCamera() {
+            if (isCameraActive) {
+                stopCamera();
+                usingFrontCamera = !usingFrontCamera;
+                setTimeout(startCamera, 500);
+                showNotification(`🔄 Switched to ${usingFrontCamera ? "front" : "back"} camera`);
+            }
+        }
+
+        // Capture Photo
+        function capturePhoto() {
+            const canvas = photoCanvas;
+            const video = videoElement;
+            
+            if (isCameraActive) {
+                // Capture from actual camera
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                
+                const context = canvas.getContext("2d");
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                
+                // Add Christmas effects
+                addChristmasEffects(context, canvas.width, canvas.height);
+                
+            } else {
+                // Create demo Christmas photo
+                canvas.width = 800;
+                canvas.height = 600;
+                const context = canvas.getContext("2d");
+                
+                // Create Christmas background
+                createDemoChristmasPhoto(context, canvas.width, canvas.height);
+            }
+            
+            currentPhoto = canvas.toDataURL("image/jpeg");
+            capturedImage.src = currentPhoto;
+            previewModal.style.display = "flex";
+            
+            // Flash effect
+            document.body.style.backgroundColor = "white";
+            setTimeout(() => {
+                document.body.style.backgroundColor = "";
+            }, 100);
+            
+            showNotification("✨ Photo captured! Add some Christmas magic!");
+        }
+
+        // Add Christmas Effects to Photo
+        function addChristmasEffects(context, width, height) {
+            // Add Merry Christmas text
+            context.font = "bold 60px 'Mountains of Christmas', cursive";
+            context.fillStyle = "rgba(255, 255, 255, 0.9)";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            
+            // Add shadow for better visibility
+            context.shadowColor = "rgba(0, 0, 0, 0.8)";
+            context.shadowBlur = 10;
+            context.shadowOffsetX = 2;
+            context.shadowOffsetY = 2;
+            
+            // Draw main text
+            context.fillText("🎄 Merry Christmas! 🎅", width / 2, 70);
+            
+            // Draw year
+            context.font = "bold 40px 'Mountains of Christmas', cursive";
+            context.fillText("2024", width / 2, height - 40);
+            
+            // Reset shadow
+            context.shadowColor = "transparent";
+            context.shadowBlur = 0;
+            context.shadowOffsetX = 0;
+            context.shadowOffsetY = 0;
+            
+            // Add some Christmas decorations
+            drawSnowflakes(context, width, height);
+            drawChristmasLights(context, width, height);
+        }
+
+        // Create Demo Christmas Photo
+        function createDemoChristmasPhoto(context, width, height) {
+            // Gradient background
+            const gradient = context.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, "#0a0f2b");
+            gradient.addColorStop(1, "#1a1f3a");
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, width, height);
+            
+            // Add stars
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const size = Math.random() * 3 + 1;
+                
+                context.fillStyle = "white";
+                context.beginPath();
+                context.arc(x, y, size, 0, Math.PI * 2);
+                context.fill();
+            }
+            
+            // Christmas tree
+            drawChristmasTree(context, width / 2, height / 2 + 50);
+            
+            // Add text
+            context.font = "bold 70px 'Mountains of Christmas', cursive";
+            context.fillStyle = "rgba(255, 0, 0, 0.9)";
+            context.textAlign = "center";
+            context.fillText("🎄 Merry Christmas! 🎁", width / 2, 100);
+            
+            context.font = "bold 40px 'Mountains of Christmas', cursive";
+            context.fillStyle = "rgba(0, 234, 255, 0.9)";
+            context.fillText("Wishing you joy and happiness!", width / 2, height - 80);
+            
+            context.font = "bold 30px 'Mountains of Christmas', cursive";
+            context.fillStyle = "rgba(255, 204, 0, 0.9)";
+            context.fillText("From Your Christmas Camera App", width / 2, height - 30);
+        }
+
+        // Draw Christmas Tree
+        function drawChristmasTree(context, x, y) {
+            // Tree trunk
+            context.fillStyle = "#8B4513";
+            context.fillRect(x - 15, y, 30, 60);
+            
+            // Tree layers
+            const layers = [
+                { width: 120, height: 40, color: "#228B22" },
+                { width: 100, height: 40, color: "#32CD32" },
+                { width: 80, height: 40, color: "#00FF7F" },
+                { width: 60, height: 40, color: "#98FB98" }
+            ];
+            
+            let currentY = y;
+            layers.forEach(layer => {
+                context.fillStyle = layer.color;
+                context.beginPath();
+                context.moveTo(x, currentY - 20);
+                context.lineTo(x - layer.width / 2, currentY + 20);
+                context.lineTo(x + layer.width / 2, currentY + 20);
+                context.closePath();
+                context.fill();
+                currentY -= 30;
+            });
+            
+            // Star on top
+            drawStar(context, x, currentY - 20, 20, "#FFD700");
+            
+            // Decorations
+            const decorations = [
+                { x: x - 30, y: y - 30, color: "#FF0000", size: 8 },
+                { x: x + 20, y: y - 50, color: "#00EAFF", size: 8 },
+                { x: x - 10, y: y - 80, color: "#FFCC00", size: 8 },
+                { x: x + 15, y: y - 110, color: "#FF00FF", size: 8 }
+            ];
+            
+            decorations.forEach(decoration => {
+                context.fillStyle = decoration.color;
+                context.beginPath();
+                context.arc(decoration.x, decoration.y, decoration.size, 0, Math.PI * 2);
+                context.fill();
+            });
+        }
+
+        // Draw Star
+        function drawStar(context, cx, cy, spikes, color) {
+            const outerRadius = spikes;
+            const innerRadius = spikes / 2;
+            
+            context.fillStyle = color;
+            context.beginPath();
+            
+            for (let i = 0; i < spikes * 2; i++) {
+                const radius = i % 2 === 0 ? outerRadius : innerRadius;
+                const angle = (Math.PI * i) / spikes;
+                const x = cx + Math.cos(angle) * radius;
+                const y = cy + Math.sin(angle) * radius;
+                
+                if (i === 0) {
+                    context.moveTo(x, y);
+                } else {
+                    context.lineTo(x, y);
+                }
+            }
+            
+            context.closePath();
+            context.fill();
+        }
+
+        // Draw Snowflakes
+        function drawSnowflakes(context, width, height) {
+            for (let i = 0; i < 20; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const size = Math.random() * 4 + 2;
+                
+                context.fillStyle = "rgba(255, 255, 255, 0.8)";
+                context.beginPath();
+                context.arc(x, y, size, 0, Math.PI * 2);
+                context.fill();
+            }
+        }
+
+        // Draw Christmas Lights
+        function drawChristmasLights(context, width, height) {
+            const colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+            
+            for (let i = 0; i < 10; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * (height - 100) + 100;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 6 + 4;
+                
+                // Light glow
+                context.fillStyle = color;
+                context.beginPath();
+                context.arc(x, y, size, 0, Math.PI * 2);
+                context.fill();
+                
+                // Glow effect
+                context.fillStyle = color + "40";
+                context.beginPath();
+                context.arc(x, y, size * 2, 0, Math.PI * 2);
+                context.fill();
+            }
+        }
+
+        // Save Photo
+        function savePhoto() {
+            if (!currentPhoto) return;
+            
+            const photoId = Date.now();
+            savedPhotos.unshift({
+                id: photoId,
+                data: currentPhoto,
+                date: new Date().toLocaleString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }),
+                timestamp: new Date().toISOString()
+            });
+            
+            // Keep only last 50 photos
+            if (savedPhotos.length > 50) {
+                savedPhotos = savedPhotos.slice(0, 50);
+            }
+            
+            localStorage.setItem("christmasPhotos", JSON.stringify(savedPhotos));
+            updateGallery();
+            previewModal.style.display = "none";
+            
+            showNotification("✅ Photo saved to gallery! 🎄");
+        }
+
+        // Retake Photo
+        function retakePhoto() {
+            previewModal.style.display = "none";
+            if (isCameraActive) {
+                showNotification("📸 Ready for another photo!");
+            }
+        }
+
+        // Share Photo
+        function sharePhoto() {
+            if (!currentPhoto) return;
+            
+            const link = document.createElement("a");
+            link.href = currentPhoto;
+            link.download = `christmas-memory-${Date.now()}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification("📥 Photo downloaded! Share the Christmas joy! ✨");
+        }
+
+        // Load Saved Photos
+        function loadSavedPhotos() {
+            updateGallery();
+        }
+
+        function updateGallery() {
+            galleryGrid.innerHTML = "";
+            
+            if (savedPhotos.length === 0) {
+                galleryGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-camera" style="font-size: 60px; color: var(--christmas-blue); margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h3 style="color: rgba(255,255,255,0.5); margin-bottom: 10px;">No Christmas photos yet</h3>
+                        <p style="color: rgba(255,255,255,0.4);">Take your first Christmas memory! 🎄✨</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            savedPhotos.forEach((photo, index) => {
+                const galleryItem = document.createElement("div");
+                galleryItem.className = "gallery-item";
+                
+                galleryItem.innerHTML = `
+                    <img src="${photo.data}" alt="Christmas Memory ${index + 1}" loading="lazy">
+                    <button class="delete-photo" data-id="${photo.id}" style="
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background: rgba(255,0,0,0.9);
+                        color: white;
+                        border: none;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        z-index: 2;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                    ">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div style="
+                        position: absolute;
+                        bottom: 10px;
+                        left: 10px;
+                        color: white;
+                        z-index: 2;
+                        font-size: 0.8rem;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                    ">${photo.date}</div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+                
+                // Show/hide delete button and date on hover
+                galleryItem.addEventListener('mouseenter', function() {
+                    this.querySelector('.delete-photo').style.opacity = '1';
+                    this.querySelector('div').style.opacity = '1';
+                });
+                
+                galleryItem.addEventListener('mouseleave', function() {
+                    this.querySelector('.delete-photo').style.opacity = '0';
+                    this.querySelector('div').style.opacity = '0';
+                });
+                
+                // View photo
+                galleryItem.querySelector("img").addEventListener("click", function () {
+                    showPhotoPreview(photo.data);
+                });
+                
+                // Delete photo
+                galleryItem.querySelector(".delete-photo").addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    if (confirm("Delete this Christmas memory?")) {
+                        deletePhoto(photo.id);
+                    }
+                });
+            });
+        }
+
+        function showPhotoPreview(photoData) {
+            capturedImage.src = photoData;
+            currentPhoto = photoData;
+            previewModal.style.display = "flex";
+        }
+
+        function deletePhoto(photoId) {
+            savedPhotos = savedPhotos.filter((photo) => photo.id !== photoId);
+            localStorage.setItem("christmasPhotos", JSON.stringify(savedPhotos));
+            updateGallery();
+            showNotification("🗑️ Christmas memory deleted");
+        }
+
+        // Create Snowflakes
+        function createSnowflakes() {
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => createSnowflake(), i * 100);
+            }
+        }
+
+        function createSnowflake() {
+            const snowflake = document.createElement("div");
+            snowflake.className = "snowflake";
+            
+            const size = Math.random() * 8 + 4;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+            snowflake.style.filter = `blur(${Math.random() * 2}px)`;
+            
+            const duration = Math.random() * 15 + 10;
+            snowflake.style.animationDuration = `${duration}s`;
+            snowflake.style.animationDelay = `${Math.random() * 10}s`;
+            
+            snowContainer.appendChild(snowflake);
+            
+            setTimeout(() => {
+                snowflake.remove();
+                createSnowflake();
+            }, (duration + 5) * 1000);
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.className = "notification";
+            void notification.offsetWidth; // Trigger reflow
+            notification.className = "notification show";
+            
+            setTimeout(() => {
+                notification.className = "notification";
+            }, 3000);
+        }
+
+        // Initialize on load
+        document.addEventListener("DOMContentLoaded", init);
+    </script>
+</body>
+</html>
