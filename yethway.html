@@ -25,13 +25,7 @@
       </div>
     </div>
 
-    <!-- Gift Video Modal -->
-    <div id="giftModal">
-      <span onclick="closeGift()">✖</span>
-      <video id="giftVideo" controls>
-        <!-- <source src="gift-video.mp4" type="video/mp4" /> -->
-      </video>
-    </div>
+  
 
     <script src="script.js"></script>
 
@@ -112,23 +106,7 @@
         });
       });
 
-      // Gift modal functions
-      function openGift() {
-        const modal = document.getElementById("giftModal");
-        const video = document.getElementById("giftVideo");
-        const music = document.getElementById("christmasMusic");
-
-        // Pause music when opening gift
-        if (!music.paused) {
-          music.pause();
-          document.getElementById("musicToggle").innerHTML = "▶ Play Music";
-          document.getElementById("musicToggle").style.background = "#c1121f";
-        }
-
-        modal.style.display = "flex";
-        video.play();
-      }
-
+   
       function closeGift() {
         const modal = document.getElementById("giftModal");
         const video = document.getElementById("giftVideo");
